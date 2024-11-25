@@ -1,0 +1,63 @@
+# .NET Core
+bin
+obj
+
+# Rider
+.idea
+.sln.iml
+.sln.idea
+
+# Visual Studio Code
+.vscode
+
+# User-specific files
+.rsuser
+.suo
+.user
+.userosscache
+.userprefs
+
+# Mono Auto Generated Files
+mono_crash.
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN
+
+# Mac System files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two r
+Iconr
+
+# Thumbnails
+._
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# JetBrains Rider
+.idea
+.sln.iml
+
+# Xamarin
+.vscode
+.env
+.history
+local.properties
