@@ -32,7 +32,7 @@ namespace PDFGeneratorPOC
 
                 foreach (var fileName in fileNames)
                 {
-                    pdfInputFullFilePaths.Add(Path.Combine(inputPDFDir, fileName));
+                   if(!string.IsNullOrWhiteSpace(fileName)) pdfInputFullFilePaths.Add(Path.Combine(inputPDFDir, fileName));
                 }
 
                 string outputFile = Path.Combine(outputPDFDir, "merged.pdf");
