@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace PDFGeneratorPOC
@@ -13,27 +15,30 @@ namespace PDFGeneratorPOC
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
                 string baseDir = AppContext.BaseDirectory;
-
                 string projectDir = Directory.GetParent(baseDir).Parent.Parent.Parent.FullName;
 
-                string inputDir = Path.Combine(projectDir, "PdfGenerator", "InputPdf");
+                string inputPDFDir = Path.Combine(projectDir, "PdfGenerator", "InputPdf");
+                string outputPDFDir = Path.Combine(projectDir, "PdfGenerator", "OutputPdf");
 
-                string outputDir = Path.Combine(projectDir, "PdfGenerator", "OutputPdf");
-
-                if (!Directory.Exists(outputDir))
+                if (!Directory.Exists(outputPDFDir))
                 {
-                    Directory.CreateDirectory(outputDir);
+                    Directory.CreateDirectory(outputPDFDir);
                 }
 
-                string[] inputFiles = { 
-                    Path.Combine(inputDir, "Report_25_11_2024 11_44_30 am.pdf"), 
-                    Path.Combine(inputDir, "Report_25_11_2024 11_43_21 am.pdf") 
-                }; 
+                var inputFilePath = Path.Combine(projectDir, "input.txt");
+                var fileNames = new List<string>(File.ReadAllLines(inputFilePath));
 
-                string outputFile = Path.Combine(outputDir, "merged.pdf");
+                var pdfInputFullFilePaths = new List<string>();
+
+                foreach (var fileName in fileNames)
+                {
+                    pdfInputFullFilePaths.Add(Path.Combine(inputPDFDir, fileName));
+                }
+
+                string outputFile = Path.Combine(outputPDFDir, "merged.pdf");
 
                 PdfMerger merger = new PdfMerger();
-                merger.MergePdfs(inputFiles, outputFile);
+                merger.MergePdfs(pdfInputFullFilePaths, outputFile);
                 Console.WriteLine("PDFs merged successfully!");
             }
             catch (Exception ex)

@@ -1,12 +1,13 @@
 ﻿using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
+using System.Collections.Generic;
 
 
 namespace PDFGeneratorPOC
 {
     public class PdfMerger
     {
-        public void MergePdfs(string[] fileNames, string outputFileName)
+        public void MergePdfs(List<string> fileNames, string outputFileName)
         {
             using (PdfDocument outputDocument = new PdfDocument())
             {
