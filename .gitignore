@@ -1,6 +1,7 @@
 # .NET Core
 bin
 obj
+OutputPdf
 
 # Rider
 .idea
