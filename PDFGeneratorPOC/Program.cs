@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace PDFGeneratorPOC
@@ -12,6 +12,9 @@ namespace PDFGeneratorPOC
         {
             try
             {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
                 string baseDir = AppContext.BaseDirectory;
@@ -39,7 +42,11 @@ namespace PDFGeneratorPOC
 
                 PdfMerger merger = new PdfMerger();
                 merger.MergePdfs(pdfInputFullFilePaths, outputFile);
+
                 Console.WriteLine("PDFs merged successfully!");
+                Console.WriteLine($"Time Taken to Merge in Second: {stopwatch.Elapsed.Seconds}");
+
+                stopwatch.Stop();
             }
             catch (Exception ex)
             {
